@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homemork 2 - Part 1</title>
+    <style>
+        h1 {
+                color: midnightblue;
+                font-style: italic;
+                text-align: center;
+                font-size: 60px;
+                font-family: Arial, Helvetica;
+            }
+            p {
+                color: black;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 75px;
+            }
+            body {
+                background-color:rgb(176, 218, 248)
+            }
+            button {
+                padding: 30px 50px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <h1> Homework 2 - Part 2</h1>
+    <div id="output-container"> </div>
+    <br>
+    <script>
+        const container = document.getElementById('output-container');
+
+        function createStyledSpan(text, fontFamily, color, style){
+            const span = document.createElement('span');
+            span.textContent = text;
+            span.style.fontFamily = fontFamily;
+            span.style.color = color;
+            span.style.marginRight = '10px'
+            if (style == 'bold'){
+                span.style.fontWeight = 'bold';
+            }
+            if (style == 'italic'){
+                span.style.fontStyle = 'italic'
+            }
+            return span;
+        }
+        const xyElement = createStyledSpan('xy', 'Times New Roman', 'red', 'bold');
+        const num12Element = createStyledSpan('12', 'Arial', 'blue', '');
+        const num89Element = createStyledSpan('89', 'Impact', 'green', 'italic');
+
+        container.appendChild(xyElement);
+        container.appendChild(num12Element);
+        container.appendChild(num89Element);
+    </script>
+    <button onclick="location='homework 1.html'"> Go Back to Homepage</button>
+    <button onclick="location='hw2.html'"> Homework 2 Main Page</button>
+</body>
+</html>

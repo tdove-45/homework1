@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Credit</title>
+    <style>
+        h1 {
+                color: midnightblue;
+                font-style: italic;
+                text-align: center;
+                font-size: 60px;
+                font-family: Arial, Helvetica;
+            }
+            p {
+                color: black;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 75px;
+            }
+            body {
+                background-color:rgb(176, 218, 248)
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <h1>Homework 2 Extra Credit</h1>
+    <h2>Currency Converter</h2>
+   
+    <table id="currency-table">
+        <thread>
+            <tr>
+                <th>Currency</th>
+                <th>Rate</th>
+                <th>Value</th>
+        </thread>
+        <tbody>
+            <tr>
+                <td>Euro</td>
+                <td>0.92</td>
+                <td>
+                    <input type="text" id="europe" readonly style="text-align: center;">
+                </td>
+            </tr>
+            <tr>
+                <td>Canadian Dollar</td>
+                <td>1.38</td>
+                <td>
+                    <input type="text" id="canada" readonly style="text-align: center;">
+                </td>
+            </tr>
+            <tr>
+                <td>Hong Kong Dollar</td>
+                <td>7.81</td>
+                <td>
+                    <input type="text" id="hongkong" readonly style="text-align: center;">
+                </td>
+            </tr>
+            <tr>
+                <td>Japanese Yen</td>
+                <td>156.73</td>
+                <td>
+                    <input type="text" id="japan" readonly style="text-align: center;">
+                </td>
+            </tr>
+            <tr>
+                <td>Mexican Peso</td>
+                <td>18.41</td>
+                <td>
+                    <input type="text" id="mexico" readonly style="text-align: center;">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="usdollars">Enter Amount of US Dollars:</label>
+                </td>
+                <td>
+                    <input type="number" id="usdollars" required value="" placeholder="USD" min="0" style="text-align: center;">
+                </td>
+                <td>
+                    <span id="message" style="color: red;"></span>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" onclick="convert()">Convert</button> 
+    <button type="reset" onclick="
+        document.getElementById('usdollars').value = '';
+        document.getElementById('europe').value = '';
+        document.getElementById('canada').value = '';
+        document.getElementById('hongkong').value = '';
+        document.getElementById('japan').value = '';
+        document.getElementById('mexico').value = '';
+        "> Reset</button>
+
+    <script>
+        function convert()
+        {
+            const usd = document.getElementById("usdollars").value;
+            
+            if (isNaN(usd) || usd < 0){
+                document.getElementById("message").innerText = "ERROR! No negative numbers";
+                return;
+            } else {
+                document.getElementById("message").innerText = " ";
+            }
+            
+            document.getElementById("europe").value = (usd * 0.92).toFixed(2);
+            document.getElementById("canada").value = (usd * 1.38).toFixed(2);
+            document.getElementById("hongkong").value = (usd * 7.81).toFixed(2);
+            document.getElementById("japan").value = (usd * 156.73).toFixed(2);
+            document.getElementById("mexico").value = (usd * 18.41).toFixed(2);
+        }
+        
+        
+    </script>
+    <br>
+    <br>
+    <button onclick="location='homepage.html'"> Go Back to Homepage</button>
+    <button onclick="location='hw2.html'"> Homework 2 Main Page</button>
+</body>
+</html>

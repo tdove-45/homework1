@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homemork 2 - Part 2</title>
+    <style>
+        h1 {
+                color: midnightblue;
+                font-style: italic;
+                text-align: center;
+                font-size: 60px;
+                font-family: Arial, Helvetica;
+            }
+        p {
+                color: black;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 75px;
+            }
+            body {
+                background-color:rgb(176, 218, 248)
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            
+            input[type="number"] {
+                width:  calc(100% - 12px);
+                padding: 8px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 4px
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            textarea{
+                width: 500px;
+                height: 150px;
+                padding: 10px;
+                border: 1px;
+                margin-top: 1px;
+            }
+            section {
+                font-size: small;
+            }
+    </style>
+</head>
+<body>
+    <h1> Homemork 2 - Part 2</h1>
+    <h2>Enter Three Integers</h2>
+        <form name = "myform">
+            <label>First Number:</label>
+            <input type="text" id="num1" name ="num1" size="20">
+        
+            <label>Second Number:</label>
+            <input type="text" id="num2" name ="num2" size="20">
+        
+            <label>Third Number:</label>
+            <input type="text" id="num3" name ="num3" size="20">
+            <br>
+            <br>
+            
+            <button type="button" onclick="calc()">Process</button>
+            <button type ="reset">Clear</button>
+            <h3>Results</h3>
+            <textarea id="Results" readonly></textarea>
+        </form>
+
+    <script>
+        function calc() 
+        {
+            var number1 = document.getElementById("num1").value;
+            var number2 = document.getElementById("num2").value;
+            var number3 = document.getElementById("num3").value;
+
+            n1 = parseInt(number1);
+            n2 = parseInt(number2);
+            n3 = parseInt(number3);
+            
+            if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+                document.getElementById("Results").value = "ERROR! Enter valid numbers!";
+                return;
+            }
+            
+            sum = n1 + n2 + n3;
+            average = sum / 3;
+            product = n1 * n2 * n3;
+            smallest = Math.min(n1, n2, n3);
+            largest = Math.max(n1, n2, n3);
+
+            document.getElementById("Results").value = 
+            ("Sum: " + sum +
+            "\nAverage: " + average +
+            "\nProduct: " + product +
+            "\nSmallest: " + smallest +
+            "\nLargest: " + largest)
+
+        }
+    </script>
+    <button onclick="location = 'homepage.html'">Go back to homepage</button>
+    <button onclick="location = 'hw2.html'">Homework 2 Main Page</button>
+    </body>
+</html>

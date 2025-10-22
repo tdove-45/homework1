@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homemork 3 Extra Credit</title>
+    <style>
+        h1 
+         {
+            color: midnightblue;
+            font-style: italic;
+            text-align: center;
+            font-size: 60px;
+            font-family: Arial, Helvetica;
+        }
+        body 
+        {
+            background-color: rgb(176, 218, 248);
+        }
+        button 
+        {
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        #question
+        {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        #answer
+        {
+            padding: 8px;
+            font-size: 18px;
+        }
+        #feedback 
+        {
+            margin-top: 20px;
+            font-size: 30px;
+        }
+        #playAgain
+        {
+            margin-top: 30px;
+            display: none;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Homework 3 - Extra Credit -</h1>
+    <h1>Multiplication Practice</h1>
+    <div id="question"></div>
+    <input type="number" id="answer" placeholder="Your answer" onkeyup="if(event.keyCode === 13) check()">
+    <button onclick="check()">Submit</button>
+    <div id="feedback"></div>
+    <div id="playAgain">
+        <p>Do you want to play again?</p>
+       <button onclick="newGame()" id="yes">YES</button>
+       <button onclick="endGame()" id="no">NO</button> 
+    </div>
+    <br>
+    <br>
+    
+    <script>
+        let num1, num2, correctAns;
+        const questionArea = document.getElementById("question-area");
+        function genQuestion()
+        {
+            num1 = Math.floor(Math.random() * 10);
+            num2 = Math.floor(Math.random() * 10);
+            correctAns = num1 * num2;
+            document.getElementById('question').textContent = "How much is " + num1 + " times " + num2 + "?";
+            document.getElementById('answer').value = '';
+            document.getElementById('feedback').textContent = ' ';
+            document.getElementById('playAgain').style.display = 'none';
+            document.getElementById('answer').focus();
+
+        }
+        function check()
+        {
+            const studentAnswer = parseFloat(document.getElementById("answer").value);
+
+            if (isNaN(studentAnswer)){
+                document.getElementById('feedback').textContent = 'Please enter a number';
+                return;
+            }
+            if (studentAnswer === correctAns) {
+                document.getElementById('feedback').textContent = 'Well done!!';
+                document.getElementById('playAgain').style.display = 'block';
+            } else {
+                document.getElementById('feedback').textContent = 'No. Try again!';
+                answer.focus();
+            }
+        }
+        function newGame()
+        {
+            genQuestion()
+        }
+        function endGame()
+        {
+            document.getElementById('feedback').textContent = 'Thanks for playing!';
+            document.getElementById('answer').value = 'none';
+            document.getElementById('playAgain').style.display = 'none';
+            document.getElementById('question').textContent = '';
+            document.querySelector('button[onclick="check()"]').style.display = 'none';
+            answer.remove();
+        }
+        genQuestion();
+    </script>
+    <button onclick="location='hw3.html'">Homework 3 Homepage</button>
+    <button onclick="location='homepage.html'">Go Back To Main Page</button>
+</body>
+</html>

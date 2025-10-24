@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homemork 4 Part 1</title>
+    <style>
+        h1 
+         {
+            color: midnightblue;
+            font-style: italic;
+            text-align: center;
+            font-size: 60px;
+            font-family: Arial, Helvetica;
+        }
+        body 
+        {
+            background-color: rgb(176, 218, 248);
+        }
+        button 
+        {
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Looping Statements</h1>
+    <h2>For Loop Calculation</h2>
+    <div class="results">
+       <p class="calculation-name"></p>
+        <p id="for-loop-product"></p>
+        <p id="for-loop-sum"></p> 
+    </div>
+    
+    <br>
+    <h2>While Loop Calculations</h2>
+    <div class="results">
+       <p class="calculation-name"></p>
+        <p id="while-loop-product"></p>
+        <p id="while-loop-sum"></p> 
+    </div>
+    <script>
+        let forProduct = 1;
+        let forSum = 0;
+        let forNum = [];
+
+        for (let i =5; i <= 25; i +=4 ){
+            forProduct *= i;
+            forSum += i;
+            forNum.push(i);
+        }
+        document.getElementById('for-loop-product').innerHTML = 
+        "The results of  " + forNum.join(' * ') + " is " + forProduct.toLocaleString();
+        document.getElementById('for-loop-sum').innerHTML = 
+        "The results of " +forNum.join(' + ') + " is " + forSum.toLocaleString();
+
+        let whileProd = 1;
+        let whileSum = 0;
+        let whileNum = [];
+        let j = 3;
+
+        while (j <= 18) {
+            whileProd *= j;
+            whileSum += j;
+            whileNum.push(j);
+            j += 3; 
+        }
+         document.getElementById('while-loop-product').innerHTML = 
+        "The results of  " + whileNum.join(' * ') + " is " + whileProd.toLocaleString();
+        document.getElementById('while-loop-sum').innerHTML = 
+        "The results of " + whileNum.join(' + ') + " is " + whileSum.toLocaleString();
+
+    </script>
+    <button onclick="location='hw4.html'">Homework 4 Homepage</button>
+    <button onclick="location='homepage.html'">Go Back To Main Page</button>
+</body>
+</html>

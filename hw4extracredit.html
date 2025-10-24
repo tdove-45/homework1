@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homemork 4 - Extra Credit - </title>
+    <style>
+        h1 
+         {
+            color: midnightblue;
+            font-style: italic;
+            text-align: center;
+            font-size: 60px;
+            font-family: Arial, Helvetica;
+        }
+        body 
+        {
+            background-color: rgb(176, 218, 248);
+        }
+        button 
+        {
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        label
+        {
+            font-size: 25px;
+            align-items: center;
+        }
+        textarea{
+                width: 500px;
+                height: 150px;
+                padding: 10px;
+                border: 1px;
+                margin-top: 1px;
+            }
+    </style>
+</head>
+<body>
+    <h1>Homework 4 - Extra Credit -</h1>
+    <form id="drawSquare">
+        <label for="size">Enter a number (2 - 10)</label>
+        <br>
+        <input type="numbers" id="size" min="2" max="10" required size="20">
+        <br>
+        <br>
+        <button type="button" onclick="draw()">Draw</button>
+        <button type="button" onclick="
+            document.getElementById('size').value = ' '
+            document.getElementById('drawing').value = ' ';
+        ">Clear</button>
+        <br>
+        <br>
+        <textarea id="drawing" readonly></textarea>
+    </form>
+    <div id="output"></div>
+    <script>
+        
+        function draw(){
+            const numInput = document.getElementById('size').value;
+            const output = document.getElementById('drawing');
+            
+
+            if (isNaN(numInput) || numInput < 2 || numInput > 10){
+                document.getElementById('drawing').value = "Please enter a number between 2 and 10";
+                return;
+            }
+            let square = '';;
+            for (let i = 0; i < numInput; i++){
+                for (let j = 0; j < numInput; j++){
+                    if (i === 0 || i === numInput - 1 || j === 0 || j === numInput - 1){
+                            square += '* ';
+                        } else {
+                            square += '  ';
+                        }
+                    }
+                    square += '\n';
+                }
+                document.getElementById('drawing').value  = square;
+            }
+    </script>
+
+    <button onclick="location='hw4.html'">Homework 4 Homepage</button>
+    <button onclick="location='homepage.html'">Go Back To Main Page</button>
+</body>
+</html>

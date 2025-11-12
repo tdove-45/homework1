@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 5 - Part 1 -</title>
+    <style>
+            h1 {
+                color: midnightblue;
+                font-style: italic;
+                text-align: center;
+                font-size: 60px;
+                font-family: Arial, Helvetica;
+            }
+            p {
+                color: black;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            body {
+                background-color:rgb(176,218,248)
+            }
+            button {
+                padding: 10px 15px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            label {
+                font-size: 20px;
+            }
+            textarea{
+                width: 400px;
+                height: 100px;
+                font-style: italic;
+                font-size: 20px;
+            }
+        </style>
+</head>
+<body>
+    <h1>Homework 5 - Part 1 -</h1>
+    <form id="info">
+        <label for="fullName">Enter your name:</label><br>
+        <input type="text" id="fullName" name="fullName"><br>
+
+        <p>Select Your Age:</p>
+        <input type="radio" id="ageLess21" name="ageGroup" value="lessThan21">
+        <label for="ageLess21">Less than 21</label>
+        <br>
+        <input type="radio" id="age21to50" name="ageGroup" value="21to50">
+        <label for="age21to50">Between 21 to 50</label>
+        <br>
+        <input type="radio" id="ageOver50" name="ageGroup" value="olderThan50">
+        <label for="ageOver50">Older than 50</label>
+        <br>
+
+        <p>Select the browsers you have used:</p>
+        <input type="checkbox" id="browserFireFox" name="browsers" value="FireFox">
+        <label for="browserFireFox">FireFox</label>
+        <br>
+        <input type="checkbox" id="browserEdge" name="browsers" value="Edge">
+        <label for="browserEdge">Edge</label>
+        <br>
+        <input type="checkbox" id="browserChrome" name="browsers" value="Chrome">
+        <label for="browserChrome">Chrome</label>
+        <br>
+        <input type="checkbox" id="browserSafari" name="browsers" value="Safari">
+        <label for="browserSafari">Safari</label>
+        <br>
+
+        <label for="moviePref">Which type of movie do you prefer</label>
+        <select id="moviePref" name="movie">
+            <option value="">----Please choose an option-----</option>
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Science Fiction">Science Fiction</option>
+        </select>
+        <br>
+        <br>
+    </form>
+    <button type="button" onclick="validForm()">SUBMIT</button>
+    <button type="button" onclick="clearForm()">CLEAR</button>
+    <br> <br>
+    <textarea rows="5" id="output" readonly></textarea>
+    <script>
+        function validForm()
+        {
+            let valid = true;
+            var name = document.getElementById("fullName").value.trim();
+            var age = document.getElementsByName("ageGroup");
+            var browsers = document.getElementsByName("browsers");
+            var moviegenre = document.getElementById("movie");
+            var results = document.getElementById("output");
+            
+            
+
+            if (name === ""){
+                results.innerHTML = "Please enter your name";
+                results.style.color = "red";
+                vaild = false;
+                return;
+            }
+            
+            var checkedAge = false;
+            for (var i = 0; i < age.length; i++){
+                if (age[i].checked){
+                    checkedAge = true;
+                    break;
+                }
+            }
+            if (!checkedAge) {
+                results.innerHTML = "Please select an age group";
+                results.style.color = "red";
+                valid = false;
+            }
+
+            var checkedBrowser = false;
+            for (var i = 0; i < browsers.length; i++){
+                if (browsers[i].checked){
+                    checkedBrowser = true;
+                    break;
+                }
+            }
+            if (!checkedBrowser) {
+                results.innerText = "Please select your browser[s]";
+                results.style.color = "red";
+                valid = false;
+            }
+            const movieSelect = document.getElementById('movie')
+            if (movieSelect === '') {
+                results.innerHTML = "Please choose your movie option";
+                results.style.color = "red";
+                valid = false;
+            }
+            if (valid) {
+                results.innerHTML = "THANKS, YOUR DATA WAS SUBMITTED"
+                results.style.color = "darkgreen";
+            }
+        }
+        function clearForm()
+        {
+            document.getElementById("output").innerHTML = "";
+            document.getElementById("info").reset();
+        }
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button onclick="location='hw5.html'"> Homemork 5 Homepage</button>
+    <button onclick="location='homepage.html'">Go back to homepage</button>
+</body>
+</html>

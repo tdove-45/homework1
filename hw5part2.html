@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework5 - Part 2 -</title>
+    <style>
+        h1 {
+                color: midnightblue;
+                font-style: italic;
+                text-align: center;
+                font-size: 60px;
+                font-family: Arial, Helvetica;
+            }
+            p {
+                color: black;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            body {
+                background-color:rgb(176,218,248)
+            }
+            button {
+                padding: 10px 15px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            textarea{
+                width: 400px;
+                height: 100px;
+            }
+    </style>
+</head>
+<body>
+    <h1>Homework 5 - Part 2 - July/2024 Census</h1>
+    <form>
+        <label for="state">Enter the full name or abberivation of a state:</label><br>
+        <input type="text" id="state">
+        <br>
+        <br>
+        <button type="button" onclick="getInfo()">SUBMIT</button>
+        <button type="button" onclick=" 
+            document.getElementById('state').value = ' ';
+            document.getElementById('output').innerHTML = ' ';
+        ">CLEAR</button>
+    </form>
+    <br>
+    <div id="output"></div>
+    <script>
+        var states = [
+            ["AL", "Alabama", "Montgomery", "5,157,699"],
+            ["AK", "Alaska", "Juneau", "740,133"],
+            ["AZ", "Arizona", "Phoenix", "7,382,384"],
+            ["AR", "Arkansas", "Little Rock", "3,088,354"],
+            ["CA", "California", "Sacramento", "39,431,263"],
+            ["CO", "Colorado", "Denver", "5,957,493"]
+        ];
+
+        function getInfo() {
+            var input = document.getElementById("state").value.trim().toLowerCase();
+            var results = document.getElementById("output");
+            var validState = false;
+
+            
+            if (input === ""){
+                results.innerHTML = "Please enter a state name or abbreviation";
+                results.style.color = "red";
+                results.style.fontSize = "25px"
+                return;
+            }
+
+            input = input.toLowerCase();
+
+            for (var i = 0; i < states.length; i++){
+                var abbr = states[i][0].toLowerCase();
+                var name  = states[i][1].toLowerCase();
+
+                if (input === abbr || input === name) {
+                    results.innerHTML =
+                    "Thanks for your inquiry, here is the information you requested: <br>" +
+                    "State abbreviation = " + states[i][0] + "<br>" +
+                    "State name = " + states[i][1] + "<br>" +
+                    "State Capital = " + states[i][2] + "<br>" +
+                    "State Population = " + states[i][3];
+                    results.style.color = "midnightblue";
+                    results.style.fontSize = "25px"
+                    validState = true;
+                    break;
+                }
+                
+            }
+            if (!validState){
+                results.innerHTML = "Sorry, we don't have the information on that state. <br> We only have information about AL, AK, AZ, AR, CA, and CO"
+                results.style.color = "red";
+            }
+    }
+    </script>
+    <br>
+    <br>
+    <button onclick="location='hw5.html'"> Homemork 5 Homepage</button>
+    <button onclick="location='homepage.html'">Go back to homepage</button>
+</body>
+</html>

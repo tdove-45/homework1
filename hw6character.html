@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+    <style>
+        label
+        {
+            font-size: 30px;
+        }
+        textarea, input[type="text"] 
+        { 
+            width: 150px; 
+        }
+        textarea 
+        { 
+            height: 110px; 
+            width: 350px;
+        }
+        input[type="submit"] 
+        { 
+            cursor: pointer; 
+            width: 100px;
+            height: 40px;
+            font-weight: 600;
+        }
+        #result-area 
+        { 
+            margin-top: 20px; 
+            padding: 10px; 
+            min-height: 40px; 
+            font-weight: bold;
+        }
+        h1 
+         {
+            color: midnightblue;
+            font-style: italic;
+            text-align: center;
+            font-size: 60px;
+            font-family: Arial, Helvetica;
+        }
+        body 
+        {
+            background-color: rgb(176, 218, 248);
+        }
+        button 
+        {
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Character Counter</h1>
+
+    <form onsubmit="search(event)">
+        <div>
+            <label for="content">Enter your long content:</label>
+            <br>
+            <textarea id="content" required></textarea>
+        </div>
+        <br>
+        <div>
+            <label for="searchChar">Enter a character to search:</label>
+            <br>
+            <input type="text" id="searchChar" maxlength="1" required>
+        </div>
+        <br>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+
+    <h2>Results:</h2>
+    <div id="result-area"></div>
+
+    <button onclick="location='hw6.html'">Homework 6 Homepage</button>
+    <button onclick="location='homepage.html'">Go Back To Main Page</button>
+    <script>
+        function search(event) {
+            event.preventDefault();
+
+            const content = document.getElementById('content').value;
+            const searchChar = document.getElementById('searchChar').value.toLowerCase();
+            const resultArea = document.getElementById('result-area');
+            
+            resultArea.textContent = '';
+
+            let count = 0;
+            for (let i = 0; i < content.length; i++) {
+                if (content[i].toLowerCase() === searchChar) {
+                    count++;
+                }
+            }
+
+            if (count > 0) {
+                resultArea.textContent = `The character "${searchChar}" shows up ${count} times in the content.`;
+            } else {
+                openNotFoundWindow(searchChar);
+            }
+        }
+
+        function openNotFoundWindow(char) {
+            const windowFeatures = 'width=300,height=100,left=500,top=100,resizable=no,scrollbars=no,status=no';
+            const newWindow = window.open('', '_blank', windowFeatures);
+
+            if (newWindow) {
+                newWindow.document.write(`
+                    <html>
+                    <head><title>Search Result</title></head>
+                    <body>
+                        <p>Search character "${char}" not found in the content you typed.</p>
+                        <!-- Button to close the window -->
+                        <button onclick="window.close()">Close Window</button>
+                    </body>
+                    </html>
+                `);
+                newWindow.document.close();
+            } else {
+                alert("Pop-up blocked! Character not found message could not be displayed in a new window.");
+            }
+        }
+    </script>
+
+</body>
+</html>

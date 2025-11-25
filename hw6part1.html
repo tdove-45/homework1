@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homewrk 6 - Part 1 -</title>
+    <style>
+        h1 
+         {
+            color: midnightblue;
+            font-style: italic;
+            text-align: center;
+            font-size: 60px;
+            font-family: Arial, Helvetica;
+        }
+        body 
+        {
+            background-color: rgb(176, 218, 248);
+        }
+        button 
+        {
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        textarea
+        {
+            width: 350px;
+            height: 150px;
+        }
+        label
+        {
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rounding</h1>
+    <form id="numRound">
+        <label> Enter a number with at least 4 decimal positions </label>
+        <br>
+        <input type="numbers" id="num">
+        <br>
+        <button type="button" onclick="calc()">SUBMIT</button>
+        <button typr="button" onclick="clear()">CLEAR</button>
+        <br>
+        <br>
+    </form>
+    
+    <textarea id="results" readonly></textarea>
+    <script>
+        function calc(){
+            const numberInput = document.getElementById('num').value;
+            const output = document.getElementById('results').value;
+            
+            if (isNaN(numberInput) || !numberInput.includes('.') || numberInput.split('.')[1].length < 4){
+                document.getElementById("results").value = "Please enter a number with at least 4 decimal positions";
+                return;
+            }
+            const originalNum = parseFloat(numberInput);
+
+            const roundedToInteger = Math.round(originalNum);
+            const sqrtRounded = Math.round(Math.sqrt(originalNum));
+            const roundedToTenth = originalNum.toFixed(1);
+            const roundedToHundredth = originalNum.toFixed(2);
+            const roundedToThousandth = originalNum.toFixed(3);
+
+            document.getElementById("results").value = 
+                "You typed number = " + originalNum +
+                "\nRounded to the nearest integer = " + roundedToInteger +
+                "\nSquare root rounded to integer = " + sqrtRounded +
+                "\nRounded to the nearest 10th = " + roundedToTenth +
+                "\nRounded to the nearest 100th = " + roundedToHundredth +
+                "\nRounded to the nearest 1000th = " + roundedToThousandth;
+        }
+        function clear(){
+            document.getElementById('num').value = " ";
+            document.getElementById('results').value = " ";
+        }
+    </script>
+    <br>
+    <button onclick="location='hw6.html'">Homework 6 Homepage</button>
+    <button onclick="location='homepage.html'">Go Back To Main Page</button>
+</body>
+</html>

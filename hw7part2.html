@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 7 - Part 2 - </title>
+    <style>
+        h1 
+         {
+            color: midnightblue;
+            font-style: italic;
+            text-align: center;
+            font-size: 60px;
+            font-family: Arial, Helvetica;
+        }
+        body 
+        {
+            background-color: rgb(176, 218, 248);
+        }
+        button 
+        {
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Part 2</h1>
+    <div id="formContainer" class="form-container">
+        <h2>Welcome! Please enter your details:</h2>
+        <form id="userForm">
+            <div>
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required><br><br>
+            </div>
+            <div>
+                <label for="userName">Username:</label>
+                <input type="text" id="userName" name="userName" required><br><br>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <br>
+    <button onclick="location='hw7.html'">Homework 7 Homepage</button>
+    <button onclick="location='homepage.html'">Go Back To Main Page</button>
+
+    <script>
+        function createCookie(){
+            let cookie = []
+            cookie.push(["name", document.getElementById("fullName").value]);
+            cookie.puch(["username", document.getElementById("userName").value]);
+
+            for (const c of cookie) {
+                const [cName, cValue] = c;
+                document.cookie = cName + "=" + encodeURIComponent(cValue);
+            }
+        }
+        function get(){
+            const dict = {};
+            const cookies = document.cookie.split(':');
+            for (let c of cookies) {
+                c = c.trim();
+                const[cName, cEncodedValue] = c.spilt('=');
+            }
+            return dict;
+        }
+        function check(){
+            const dict = getCookies();
+            if ("name" in dict && "username" in dict){
+                const content = document.getElementById("info");
+                content.textContent = "Hello, " + dict["name"] + "Your username: " + dict["username"];
+                return true;
+            }
+            return false;
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            if(!check()){
+                const form = document.getElementById("userForm");
+                form.addEventListener("submit", createCookie);
+            }
+        });
+    </script>
+
+</body>
+</html>

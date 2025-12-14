@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<title>Homework #8</title>
+<style>
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+body {
+  background-color:rgb(176,218,248)
+}
+button {
+  padding: 10px 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+ h1 {
+  color: midnightblue;
+  font-style: italic;
+  text-align: center;
+  font-size: 60px;
+  font-family: Arial, Helvetica;
+}
+p {
+  color: black;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+h2 {
+  text-align: center;
+}
+</style>
+<body>
+  <h1>Homework #8 - Ajax Assignment</h1>
+  <button type="button" onclick="loadDoc()">Get CD collection</button>
+  <br>
+  <table id="demo"></table>
+
+  <script>
+  function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {myFunction(this);};
+    xhttp.open("GET", "cd_catalog.xml");
+    xhttp.send();
+  }
+  function myFunction(xml) {
+    const xmlDoc = xml.responseXML;
+    const cds = xmlDoc.getElementsByTagName("CD");
+    let table = "<tr><th>Artist</th><th>Title</th><th>Year</th><th>Price</th></tr>";
+    
+    for (let i = 0; i < cds.length; i++) { 
+      table += "<tr><td>" +
+        cds[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue + "</td><td>"
+        cds[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue + "</td><td>"
+        cds[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue + "</td><td>"
+        cds[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue +
+        "</td></tr>";
+    document.getElementById("demo").innerHTML = table;
+    }
+  }
+  </script>
+  <h2>Explaination of AJAX</h2>
+  <p>This page use the of the AJAX call in the loadDoc() function. When the user clicks on the button, it create a new XMLHttpRequest and gets the requests f
+    from the cd_catalog.xml file.
+  </p>
+  <p>Within the myFunction() function, the for loop goes though the CD elements in the XML file. It then
+    collects the tiles, artists, year, and prices to create rows for each info. Once the rows are created, the 
+    table will be created and displyed using the .innerHTML. </p>
+  <h2>REST API Report</h2>
+  <p>The API that I've choosen to take about is the Astronomy API. This is REST API that proides information
+    for timing on the sunrise, sunset, and moonrise & moonset. This API also provides information for the distance 
+    between the sun and the earth, the earth and the moon, longitude, latitide, and sun & moon azimuth.
+  </p>
+  <p>The API returns the data in JSON and/or XML format</p>
+  <p>Developers that want to use the API are required to sign up/ create an account get an API key to gain access.</p>
+  <p>Developer can find the information from the 
+  <a href="https://ipgeolocation.io/astronomy-api.html?ref=apilist.fun">Astronomy Documentation</a>
+  .</p>
+  <br>
+  <button onclick="location='homepage.html'">Go back to homepage</button>
+  </body>
+</html>
